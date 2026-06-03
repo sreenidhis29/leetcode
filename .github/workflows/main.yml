@@ -1,12 +1,21 @@
 name: Sync LeetCode
 on:
-  workflow_dispatch:     # Allows you to trigger this manually
+  workflow_dispatch:     
   schedule:
-    - cron: '0 8 * * *'  # Runs automatically every day at 8:00 AM UTC
+    - cron: '0 8 * * *'  
+
+# FIX 1: Explicitly grants the runner permission to push code to your repo
+permissions:
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    # FIX 2: Bypasses the Node 20 deprecation warning block
+    env:
+      ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+
     steps:
       - name: Sync Solutions
         uses: joshcai/leetcode-sync@v1.7
