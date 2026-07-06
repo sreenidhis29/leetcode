@@ -1,16 +1,10 @@
-class Solution(object):
-    def removeDuplicates(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
         if not nums:
             return 0
-
-        k = 1  # First element is always unique
-        for i in range(1, len(nums)):
-            if nums[i] != nums[k - 1]:
-                nums[k] = nums[i]
-                k += 1
-        return k
-
+        slow = 1
+        for fast in range(1, len(nums)):
+            if nums[fast] != nums[fast - 1]:
+                nums[slow] = nums[fast]
+                slow += 1
+        return slow
