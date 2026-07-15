@@ -8,9 +8,9 @@ class Solution:
         dummy = ListNode(0, head)
         slow = dummy
         fast = dummy
-        for _ in range(n):
+        for _ in range(n + 1):
             fast = fast.next
-        while fast.next:
+        while fast:
             fast = fast.next
             slow = slow.next
         slow.next = slow.next.next
